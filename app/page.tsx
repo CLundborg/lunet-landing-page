@@ -7,7 +7,7 @@ export default function Home() {
       <InfinitySnake />
       {/* Glass overlay */}
       <div className="absolute inset-0 z-[5] backdrop-blur-sm bg-white/2 border border-white/5" />
-      <div className="p-12 text-center text-2xl relative z-9">
+      <div className="p-12 text-center text-2xl relative z-10">
       <h1>Welcome to Our Landing Page</h1>
       <p>We are launching soon!</p>
       </div>
