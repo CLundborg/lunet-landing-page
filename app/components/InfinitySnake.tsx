@@ -14,7 +14,6 @@ export default function InfinitySnake() {
   const [renderTrigger, setRenderTrigger] = useState(0);
   const [pathD, setPathD] = useState<string>('');
   const [headPoint, setHeadPoint] = useState<Point | null>(null);
-  const mousePositionRef = useRef<Point | null>(null);
   const trailRef = useRef<Point[]>([]);
   const animationFrameRef = useRef<number | undefined>(undefined);
 
@@ -110,8 +109,6 @@ export default function InfinitySnake() {
 
     // Track mouse movement
     const handleMouseMove = (e: MouseEvent) => {
-      mousePositionRef.current = { x: e.clientX, y: e.clientY };
-      
       // Add to trail if moved enough distance
       const lastPoint = trailRef.current[trailRef.current.length - 1];
       if (!lastPoint) {
