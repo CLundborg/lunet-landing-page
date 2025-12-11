@@ -1,11 +1,17 @@
-import Image from "next/image";
+import Logo from './svg/logo.jsx';
+import InfinitySnake from './components/InfinitySnake';
 
 export default function Home() {
   return (
-    <main style={{ textAlign: 'center', padding: '50px' }}>
+    <main className="flex flex-col items-center h-screen relative overflow-hidden">
+      <InfinitySnake />
+      {/* Glass overlay */}
+      <div className="absolute inset-0 z-[5] backdrop-blur-sm bg-white/2 border border-white/5" />
+      <div className="p-12 text-center text-2xl relative z-10">
       <h1>Welcome to Our Landing Page</h1>
       <p>We are launching soon!</p>
-      <Image src="/logo.png" alt="Logo" width={100} height={100} />
+      </div>
+      <Logo width={500} height={500} className="inline-block justify-center relative z-10" />
     </main>
   );
 }
