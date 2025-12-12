@@ -15,7 +15,7 @@ export default function InfinitySnake() {
   const [pathD, setPathD] = useState<string>('');
   const [headPoint, setHeadPoint] = useState<Point | null>(null);
   const trailRef = useRef<Point[]>([]);
-  const animationFrameRef = useRef<number | undefined>(undefined);
+  const animationFrameRef = useRef<number | null>(null);
 
   // Generate smooth path from trail using quadratic bezier curves
   const generatePath = (): { path: string; headPoint: Point | null } => {
