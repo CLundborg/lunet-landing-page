@@ -38,7 +38,6 @@ export default function InfinitySnake() {
         const dx = prevPoint.x - currentPoint.x;
         const dy = prevPoint.y - currentPoint.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
         if (totalDistance + distance <= targetLength) {
           totalDistance += distance;
           rawPoints.push(currentPoint);
@@ -62,12 +61,15 @@ export default function InfinitySnake() {
     }
 
     if (rawPoints.length === 1) {
-      return { path: `M ${rawPoints[0].x} ${rawPoints[0].y}`, headPoint: rawPoints[0] };
+      return {
+        path: `M ${rawPoints[0].x} ${rawPoints[0].y}`,
+        headPoint: rawPoints[0],
+      };
     }
 
     // Generate smooth curve using quadratic bezier curves
     let path = `M ${rawPoints[0].x} ${rawPoints[0].y}`;
-    
+
     if (rawPoints.length === 2) {
       // Simple line for just 2 points
       path += ` L ${rawPoints[1].x} ${rawPoints[1].y}`;
@@ -76,11 +78,13 @@ export default function InfinitySnake() {
       for (let i = 1; i < rawPoints.length; i++) {
         const curr = rawPoints[i];
         const next = rawPoints[Math.min(i + 1, rawPoints.length - 1)];
-        
+
         // Control point is the current point, end point is midpoint to next
-        const endX = i === rawPoints.length - 1 ? curr.x : (curr.x + next.x) / 2;
-        const endY = i === rawPoints.length - 1 ? curr.y : (curr.y + next.y) / 2;
-        
+        const endX =
+          i === rawPoints.length - 1 ? curr.x : (curr.x + next.x) / 2;
+        const endY =
+          i === rawPoints.length - 1 ? curr.y : (curr.y + next.y) / 2;
+
         if (i === 1) {
           // First curve: use current point as control
           path += ` Q ${curr.x} ${curr.y} ${endX} ${endY}`;
@@ -117,7 +121,7 @@ export default function InfinitySnake() {
         const dx = e.clientX - lastPoint.x;
         const dy = e.clientY - lastPoint.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         // Only add point if moved at least 1px (more points = smoother curve)
         if (distance > 1) {
           trailRef.current.push({ x: e.clientX, y: e.clientY });
@@ -175,7 +179,13 @@ export default function InfinitySnake() {
       ref={svgRef}
       width="100%"
       height="100%"
-      style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 1,
+      }}
       viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
       preserveAspectRatio="none"
     >
@@ -198,12 +208,7 @@ export default function InfinitySnake() {
           />
           {/* Add head circle for snake effect */}
           {headPoint && (
-            <circle
-              cx={headPoint.x}
-              cy={headPoint.y}
-              r="14"
-              fill={color1}
-            />
+            <circle cx={headPoint.x} cy={headPoint.y} r="14" fill={color1} />
           )}
         </>
       )}
