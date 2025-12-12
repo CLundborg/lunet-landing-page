@@ -14,7 +14,7 @@ export default function Home() {
       <Logo
         width={500}
         height={500}
-        className="inline-block justify-center relative z-9"
+        className="inline-block justify-center relative z-8"
       />
     </main>
   );
